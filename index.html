@@ -360,6 +360,31 @@ header.top .logo { animation: fade .8s ease both; }
 /* barra de progresso de leitura */
 .readbar { position: fixed; top: 0; left: 0; height: 2px; width: 100%; background: var(--gold); transform: scaleX(0); transform-origin: left; z-index: 30; }
 
+/* janela que abre o site do case por cima da página */
+.sitebox { position: fixed; inset: 0; z-index: 60; background: rgba(5,4,3,.86); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; padding: 24px; animation: fade .25s ease both; }
+.sb-panel { width: min(1240px, 100%); height: min(860px, 100%); display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: 0 40px 100px -30px rgba(0,0,0,.9); animation: sbin .35s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes sbin { from { opacity: 0; transform: translateY(18px) scale(.98); } to { opacity: 1; transform: none; } }
+.sb-bar { display: flex; align-items: center; gap: 10px; padding: 10px 12px 10px 18px; border-bottom: 1px solid var(--line); }
+.sb-id { flex: 1; min-width: 0; display: grid; gap: 2px; }
+.sb-id b { font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sb-id span { font-size: 12.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sb-bar .btn { padding: 11px 14px; font-size: 13px; white-space: nowrap; }
+.sb-view { position: relative; flex: 1; min-height: 0; background: #fff; }
+.sb-load { position: absolute; inset: 0; margin: 0; display: grid; place-content: center; text-align: center; color: #5b5448; font-size: 15px; padding: 24px; }
+.sb-load small { font-size: 13px; opacity: .8; }
+.sb-view iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+@media (max-width: 700px) {
+  .sitebox { padding: 0; }
+  .sb-panel { width: 100%; height: 100%; border: 0; border-radius: 0; }
+  .sb-bar { padding: calc(8px + env(safe-area-inset-top, 0px)) 10px 8px 14px; gap: 8px; }
+  .sb-id span { display: none; }
+  .sb-bar .btn { padding: 11px 12px; }
+}
+.case .shot { position: relative; }
+.case .shot::after { content: "Ver site"; position: absolute; left: 50%; top: 42%; transform: translate(-50%,-50%) scale(.9); font: 700 12px/1 var(--f-display); letter-spacing: .04em; color: #0a0907; background: #f3ede1; padding: 9px 13px; border-radius: 999px; opacity: 0; transition: opacity .25s ease, transform .25s ease; pointer-events: none; box-shadow: 0 10px 24px -8px rgba(0,0,0,.7); }
+.case .shot:hover::after, .case .shot:focus-visible::after { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+@media (hover: none) { .case .shot::after { opacity: 1; transform: translate(-50%,-50%) scale(1); top: auto; bottom: 14%; transform: translateX(-50%); font-size: 11px; padding: 7px 10px; } }
+
 /* ===== ajustes para celular ===== */
 @media (max-width: 520px) {
   body { padding-inline: 18px; }
@@ -554,31 +579,31 @@ header.top .logo { animation: fade .8s ease both; }
         <p>Já colocamos no ar sites para construtoras, escritórios de advocacia e empresas de vários outros segmentos.</p>
       </div>
     </div>
-    <p class="hint">Toque ou passe o mouse em um notebook para ver o site inteiro.</p>
+    <p class="hint">Clique em um notebook para ver o site inteiro.</p>
     <div class="cases">
       <article class="case">
-        <button type="button" class="shot" aria-label="Ver o site Fátima Sartório inteiro">
+        <button type="button" class="shot" data-url="https://fatimasartorio.adv.br/" data-nome="Fátima Sartório" aria-label="Abrir o site Fátima Sartório">
           <span class="lapwrap"><span class="lid"><span class="screen"><span class="pic" role="img" aria-label="Site da advogada Fátima Sartório" style="--im: var(--img-fatima); aspect-ratio: 800 / 2100;"></span></span></span><span class="base"></span></span>
         </button>
         <h3>Fátima Sartório</h3>
         <p>Advocacia</p>
       </article>
       <article class="case">
-        <button type="button" class="shot" aria-label="Ver o site Relia inteiro">
+        <button type="button" class="shot" data-url="https://www.reliaregistrodemarca.com.br/" data-nome="Relia" aria-label="Abrir o site Relia">
           <span class="lapwrap"><span class="lid"><span class="screen"><span class="pic" role="img" aria-label="Site da Relia Registro de Marcas" style="--im: var(--img-relia); aspect-ratio: 440 / 1900;"></span></span></span><span class="base"></span></span>
         </button>
         <h3>Relia</h3>
         <p>Registro de marcas</p>
       </article>
       <article class="case">
-        <button type="button" class="shot" aria-label="Ver o site FireDrill inteiro">
+        <button type="button" class="shot" data-url="https://firedrill.com.br/" data-nome="FireDrill" aria-label="Abrir o site FireDrill">
           <span class="lapwrap"><span class="lid"><span class="screen"><span class="pic" role="img" aria-label="Site da FireDrill" style="--im: var(--img-firedrill); aspect-ratio: 440 / 1900;"></span></span></span><span class="base"></span></span>
         </button>
         <h3>FireDrill</h3>
         <p>Segurança para escolas</p>
       </article>
       <article class="case">
-        <button type="button" class="shot" aria-label="Ver o site A10 Certificadora inteiro">
+        <button type="button" class="shot" data-url="https://www.a10certificadoradigital.com.br/" data-nome="A10 Certificadora" aria-label="Abrir o site A10 Certificadora">
           <span class="lapwrap"><span class="lid"><span class="screen"><span class="pic" role="img" aria-label="Site da A10 Certificadora Digital" style="--im: var(--img-a10); aspect-ratio: 440 / 801;"></span></span></span><span class="base"></span></span>
         </button>
         <h3>A10 Certificadora</h3>
@@ -645,6 +670,20 @@ header.top .logo { animation: fade .8s ease both; }
   </footer>
   </div>
 </main>
+
+<div class="sitebox" id="sitebox" role="dialog" aria-modal="true" aria-labelledby="sitebox-nome" hidden>
+  <div class="sb-panel">
+    <div class="sb-bar">
+      <div class="sb-id"><b id="sitebox-nome"></b><span id="sitebox-url"></span></div>
+      <a class="btn" id="sitebox-nova" href="#" target="_blank" rel="noopener">Abrir em nova aba</a>
+      <button type="button" class="btn solid" id="sitebox-fechar">Fechar</button>
+    </div>
+    <div class="sb-view">
+      <p class="sb-load">Carregando o site…<br><small>Se não aparecer em alguns segundos, use "Abrir em nova aba".</small></p>
+      <iframe id="sitebox-frame" title="Site do cliente" referrerpolicy="no-referrer" loading="eager"></iframe>
+    </div>
+  </div>
+</div>
 
 <div class="navbar" id="navbar" hidden>
   <div class="in">
@@ -736,6 +775,7 @@ var WHATSAPP_PREVIA = 'Olá! Quero ver uma prévia de como ficaria o site da min
   });
   document.addEventListener('keydown', function (e) {
     if (e.target.closest && e.target.closest('input, textarea, summary')) return;
+    var sb = document.getElementById('sitebox'); if (sb && !sb.hidden) return;
     if (e.key === 'ArrowRight') ir(atual + 1);
     if (e.key === 'ArrowLeft') ir(atual - 1);
   });
@@ -744,6 +784,7 @@ var WHATSAPP_PREVIA = 'Olá! Quero ver uma prévia de como ficaria o site da min
   document.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
   document.addEventListener('touchend', function (e) {
     if (x0 === null) return;
+    var sb = document.getElementById('sitebox'); if (sb && !sb.hidden) { x0 = null; return; }
     var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
     x0 = null;
     if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy) * 1.8) ir(atual + (dx < 0 ? 1 : -1));
@@ -753,14 +794,37 @@ var WHATSAPP_PREVIA = 'Olá! Quero ver uma prévia de como ficaria o site da min
   ir(inicial >= 0 ? inicial : 0, true);
 })();
 
-/* cases: tocar para rolar o print do site */
-document.querySelectorAll('.case .shot').forEach(function (b) {
-  b.addEventListener('click', function () {
-    var on = b.classList.contains('play');
-    document.querySelectorAll('.case .shot.play').forEach(function (o) { o.classList.remove('play'); });
-    if (!on) b.classList.add('play');
+/* cases: clicar no notebook abre o site inteiro em uma janela por cima da página */
+(function () {
+  var box = document.getElementById('sitebox');
+  if (!box) return;
+  var frame = document.getElementById('sitebox-frame'), nome = document.getElementById('sitebox-nome'),
+      url = document.getElementById('sitebox-url'), nova = document.getElementById('sitebox-nova'),
+      fechar = document.getElementById('sitebox-fechar'), origem = null;
+  function abrir(btn) {
+    origem = btn;
+    nome.textContent = btn.dataset.nome || '';
+    url.textContent = (btn.dataset.url || '').replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+    nova.href = btn.dataset.url;
+    frame.src = btn.dataset.url;
+    box.hidden = false;
+    document.documentElement.style.overflow = 'hidden';
+    fechar.focus();
+    if (window.gtag) gtag('event', 'case_aberto', { site: btn.dataset.nome });
+  }
+  function fecharBox() {
+    box.hidden = true;
+    frame.removeAttribute('src');
+    document.documentElement.style.overflow = '';
+    if (origem) origem.focus();
+  }
+  document.querySelectorAll('.case .shot[data-url]').forEach(function (b) {
+    b.addEventListener('click', function () { abrir(b); });
   });
-});
+  fechar.addEventListener('click', fecharBox);
+  box.addEventListener('click', function (e) { if (e.target === box) fecharBox(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !box.hidden) fecharBox(); });
+})();
 
 /* primeira etapa: o mockup acompanha o mouse de leve (só em computador) */
 (function () {
